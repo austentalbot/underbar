@@ -163,7 +163,7 @@ var _ = {};
     });
   };
 
-  // Reduces an array or object to a single value by repetitively calling
+  // Reduces an array of object to a single value by repetitively calling
   // iterator(previousValue, item) for each item. previousValue should be
   // the return value of the previous iterator call.
   //
@@ -177,6 +177,11 @@ var _ = {};
   //     return total + number;
   //   }, 0); // should be 6
   _.reduce = function(collection, iterator, accumulator) {
+    var tot = accumulator || 0;
+    _.each(collection, function(val) {
+      tot = iterator(tot, val);
+    });
+    return tot;
   };
 
   // Determine if the array or object contains a given value (using `===`).
