@@ -263,6 +263,17 @@ var _ = {};
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    var args = Array.prototype.slice.call(arguments);
+    var newProps=args.slice(1, args.length);
+
+    _.each(newProps, function(newObj) {
+      _.each(newObj, function(val, key) {
+        if (!(key in obj)) {
+          obj[key]=val;
+        }
+      });
+    });
+    return obj;
   };
 
 
