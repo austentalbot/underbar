@@ -590,11 +590,16 @@ var _ = {};
   _.sortBy = function(collection, iterator) {
     //apply iterator to collection
     
+    //sort by key
     if (typeof iterator==='string') {
       return collection.sort(function(a, b) {
-        return (a[iterator]-b[iterator]);
+        if (a[iterator]===undefined) {
+          return 1;
+        } else {
+          return (a[iterator]-b[iterator]);
+        }
       });
-    } else {
+    } else { //sort by function
       var iterated=[];
       var newCollection=[];
       _.each(collection, function(val) {
@@ -602,7 +607,11 @@ var _ = {};
       });
 
       iterated.sort(function(a, b) {
-        return a[1]-b[1];
+        if (a[1]===undefined) {
+          return 1;
+        } else {
+          return a[1]-b[1];
+        }
       });
       _.each(iterated, function(val) {
         newCollection.push(val[0]);
