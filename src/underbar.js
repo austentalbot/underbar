@@ -633,13 +633,17 @@ var _ = {};
   _.zip = function() {
     var results=[];
     var args=Array.prototype.slice.call(arguments);
+    var max=0;
     _.each(args, function(arr) {
-      _.each(arr, function(val, index) {
-        if (results[index]===undefined) {
+      arr.length > max ? max=arr.length : null;
+    });
+    _.each(args, function(arr) {
+      for (var i=0; i<max; i++) {
+        if (results[i]===undefined) {
           results.push([]);
         }
-        results[index].push(val);
-      });
+        results[i].push(arr[i]);
+      }
     });
 
     return results;
