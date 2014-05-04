@@ -607,10 +607,15 @@ var _ = {};
       });
 
       iterated.sort(function(a, b) {
+        /*
         if (a[1]===undefined) {
           return 1;
         } else {
           return a[1]-b[1];
+        }*/
+        if (a[1] !== b[1]) {
+          if (a[1] > b[1] || a[1] === void 0) return 1;
+          if (a[1] < b[1] || b[1] === void 0) return -1;
         }
       });
       _.each(iterated, function(val) {
