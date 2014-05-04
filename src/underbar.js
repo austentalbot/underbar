@@ -690,6 +690,20 @@ var _ = {};
   // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
   _.difference = function(array) {
+    var args=Array.prototype.slice.call(arguments, 1);
+    var testArray=array.slice();
+    var tempArray=[];
+
+    _.each(args, function(arr) {
+      tempArray=[];
+      _.each(testArray, function(val, key) {
+        arr.indexOf(val)===-1 ? tempArray.push(val) : null;
+      });
+      testArray=tempArray.slice();
+    });
+
+    return testArray;
+
   };
 
 
