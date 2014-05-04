@@ -678,9 +678,7 @@ var _ = {};
     _.each(arrays, function(arr) {
       resultsTemp=[];
       _.each(arr, function(val) {
-        if (val in results) {
-          resultsTemp.push(val);
-        }
+        results.indexOf(val) >-1 ? resultsTemp.push(val) : null;
       });
       results=resultsTemp.slice();
     });
